@@ -2,6 +2,8 @@
 (add-to-list 'load-path' "~/.emacs.d")
 (add-to-list 'load-path' "~/.emacs.d/theme")
 (add-to-list 'load-path' "~/.emacs.d/ibus")
+(add-to-list 'load-path' "~/.emacs.d/auto-complete")
+(add-to-list 'load-path' "~/.emacs.d/popup")
 
 ;;设置主题
 (require 'color-theme)
@@ -32,7 +34,7 @@
 
 ;;在每行开头显示行号
 (global-linum-mode t)
-(setq linum-format "%04d ")
+(setq linum-format "%06d ")
 
 ;;文件修改不进行备份
 (setq make-backup-files nil)
@@ -50,3 +52,18 @@
 
 ;;设置字体
 (set-default-font " -bitstream-Courier 10 Pitch-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1")
+
+;;Go Lang 设置
+(add-to-list 'load-path' "~/.emacs.d/golang/go-mode")
+(add-to-list 'load-path' "~/.emacs.d/golang/go-eldoc")
+(add-to-list 'load-path' "~/.emacs.d/golang/go-autocomplete")
+(require 'go-mode-autoloads)
+
+(add-hook 'before-save-hook 'gofmt-before-save)
+
+(require 'go-eldoc)
+(add-hook 'go-mode-hook 'go-eldoc-setup)
+
+(require 'go-autocomplete)
+(require 'auto-complete-config)
+(ac-config-default)
